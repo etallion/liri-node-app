@@ -13,20 +13,23 @@ var moment = require('moment');
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var argvArr = process.argv;
+var searchType = argvArr[2];
+var searchTerm = argvArr.slice(3).join(" ");
 
 function bandsInTown(artist){
-    axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
+    axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id="+keys.bandsInTown.id)
     .then(function (response) {
         //console.log(response); 
-        console.log('---------- '+response.data[0].lineup[0]+' ----------'); 
-        console.log('Venue name:\t'+response.data[0].venue.name);
-        console.log('Venue name:\t'+response.data[0].venue.city+', '+response.data[0].venue.country);
+        console.log(colors.yellow('---------- Startof Bands In Town Concerts -----------'));
+        console.log('Artist name: \t'+colors.magenta(response.data[0].lineup[0])); 
+        console.log('Venue name:\t'+colors.magenta(response.data[0].venue.name));
+        console.log('Venue name:\t'+colors.magenta(response.data[0].venue.city+', '+response.data[0].venue.region+', '+response.data[0].venue.country));
         var concertDate = response.data[0].datetime;
         var dateFormat = "MM/DD/YYYY";
         var convertedDate = moment(concertDate, dateFormat);
-        console.log('Concert Date:\t'+concertDate);
+        console.log('Concert Date:\t'+colors.magenta(concertDate));
         console.log('Concert Date:\t'+convertedDate);
-        console.log('-----------------------------------');
+        console.log(colors.yellow('---------- Endof Bands In Town Concerts -----------'));
         
 
         //console.log('Name of the venue:\t' );
@@ -41,15 +44,25 @@ function bandsInTown(artist){
 };
 
 function spotifySong(song){
-    
+//     * Artist(s)
+//     * The song's name
+//     * A preview link of the song from Spotify
+//     * The album that the song is from
+//   * If no song is provided then your program will default to "The Sign" by Ace of Base.
+
     if(song === '' || song === undefined){
         song = 'I saw the sign';
     }
+
     spotify.search({ type: 'track', query: song }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-      console.log(JSON.stringify(data, null, 2)); 
+      console.log(colors.yellow('---------- Startof Spotify Track Info -----------'));
+      console.log(colors.blue('Artist:\t\t'+data.tracks.items[0].artists[0].name));
+      console.log(colors.blue('Song name:\t'+data.tracks.items[0].name));
+      console.log(colors.blue('Album URL:\t'+data.tracks.items[0].external_urls.spotify));
+      console.log(colors.yellow('---------- Endof Spotify Track Info -----------'));
     });
 }
 
@@ -67,7 +80,7 @@ function omdb(movie){
         movie = 'Mr. Nobody';
     }
     
-    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey="+keys.omdb.key;
 
     axios.get(queryURL)
     .then(function(response) {
@@ -103,22 +116,27 @@ function omdb(movie){
 };
 
 function readRandomFile(){
-
+        var data = fs.readFileSync('random.txt',"utf8");
+        var contentsArr = data.split(",");
+        searchType = contentsArr[0];
+        searchTerm = contentsArr.slice(1).join(" ");
+        commandByArgv();
 };
 
 function commandByArgv(){
-    switch(argvArr[2]){
+    switch(searchType){
         case `concert-this`:
-            bandsInTown(argvArr.slice(3).join(" "));
+            bandsInTown(searchTerm);
             break;
         case `spotify-this-song`:
-            spotifySong(argvArr.slice(3).join(" "));
+            spotifySong(searchTerm);
             break;
         case  `movie-this`:
-            omdb(argvArr.slice(3).join(" "));
+            omdb(searchTerm);
              break;
         case `do-what-it-says`:
             readRandomFile();
+            break;
         default :
             console.log(colors.red('Error. You entered an invalid command.'));
             console.log(colors.blue('\nUse on of the following:'));

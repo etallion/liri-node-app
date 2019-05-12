@@ -161,6 +161,7 @@ function commandByArgv(){
             console.log(colors.yellow('\nspotify-this-song <song name>'));
             console.log(colors.yellow('\nmovie-this <movie title>'));
             console.log(colors.yellow('\ndo-what-it-says\n'));
+            commandByInquirer();
     }
 };
 
@@ -175,6 +176,26 @@ function logToFile(string){
       });
 }
 
+function commandByInquirer(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: 'type',
+            message: 'Search by Bands In Town, Spotify, and OMDB API:',
+            choices: ['concert-this', 'spotify-this-song', 'movie-this', 'do-what-it-says']
+        },
+        {
+            type: 'input',
+            name: 'term',
+            message: 'Great! Which one are you searching for?'
+        }
 
+    ]).then(function(response){
+        searchType = response.type;
+        searchTerm = response.term
+        commandByArgv();
+        
+    });
+}
 
 commandByArgv();

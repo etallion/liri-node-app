@@ -1,53 +1,19 @@
-Title: Finding Nemo
+---------- Startof Bands In Town Concerts -----------
 
-Year: 2003
+Artist:	The Lumineers
 
-[1mRatings: [22m[32mIMDB: [39m[32m8.1/10[39m[32m	Rotten Tomatoes: [39m[32m99%[39m
+Venue name:	Lyric Theatre
+
+Venue name:	Birmingham, AL, United States
+
+Concert Date:	undefined
 ------------------------------------------------------------
 
-Title: Bohemian Rhapsody
+Artist:	Queen
 
-Year: 2018
+Song:	Don't Stop Me Now - Remastered
 
-Ratings: [32mIMDB: [39m[32m8.1/10[39m[32m	Rotten Tomatoes: [39m[32m61%[39m
-
-Country (produced in):	[3m[32mUK, USA[39m[23m
-
-Language:[3m[32mEnglish[39m[23m
-
-Plot:	[3m[32mThe story of the legendary rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).[39m[23m
-
-Actors:	[3m[32mRami Malek, Lucy Boynton, Gwilym Lee, Ben Hardy[39m[23m
-------------------------------------------------------------
-
-Title: Bohemian Rhapsody
-
-Year: 2018
-
-Ratings: IMDB: 8.1/10	Rotten Tomatoes: 61%
-
-Country (produced in):	UK, USA
-
-Language:English
-
-Plot:	The story of the legendary rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).
-
-Actors:	Rami Malek, Lucy Boynton, Gwilym Lee, Ben Hardy
-------------------------------------------------------------
-
-Title: It
-
-Year: 2017
-
-Ratings: IMDB: 7.4/10	Rotten Tomatoes: 85%
-
-Country (produced in):	USA, Canada
-
-Language:English
-
-Plot:	In the summer of 1989, a group of bullied kids band together to destroy a shape-shifting monster, which disguises itself as a clown and preys on the children of Derry, their small Maine town.
-
-Actors:	Jaeden Martell, Jeremy Ray Taylor, Sophia Lillis, Finn Wolfhard
+Album URL:	https://open.spotify.com/track/7hQJA50XrCWABAu5v6QZ4i
 ------------------------------------------------------------
 
 Title: Bohemian Rhapsody

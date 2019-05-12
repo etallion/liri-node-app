@@ -19,7 +19,18 @@ var searchTerm = argvArr.slice(3).join(" ");
 function bandsInTown(artist){
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id="+keys.bandsInTown.id)
     .then(function (response) {
-        //console.log(response); 
+        //Format data into string to append to log.txt file
+        var dataString = '';
+        var concertData = [
+            '---------- Startof Bands In Town Concerts -----------',
+            "Artist:\t" + response.data[0].lineup[0],
+            'Venue name:\t'+response.data[0].venue.name,
+            'Venue name:\t'+response.data[0].venue.city+', '+response.data[0].venue.region+', '+response.data[0].venue.country,
+            'Concert Date:\t'+concertDate
+            ].join("\n\n");
+            logToFile(concertData);
+
+        //Format response for console with colors
         console.log(colors.yellow('---------- Startof Bands In Town Concerts -----------'));
         console.log('Artist name: \t'+colors.magenta(response.data[0].lineup[0])); 
         console.log('Venue name:\t'+colors.magenta(response.data[0].venue.name));
@@ -28,14 +39,10 @@ function bandsInTown(artist){
         var dateFormat = "MM/DD/YYYY";
         var convertedDate = moment(concertDate, dateFormat);
         console.log('Concert Date:\t'+colors.magenta(concertDate));
-        console.log('Concert Date:\t'+convertedDate);
+        //console.log('Concert Date:\t'+convertedDate);
         console.log(colors.yellow('---------- Endof Bands In Town Concerts -----------'));
         
 
-        //console.log('Name of the venue:\t' );
-        //console.log('Venue location:\t' );
-        //console.log('Date of event:\t' );
-         //use moment to format this as "MM/DD/YYYY")
     })
     .catch(function (error) {
         console.log(error);
@@ -48,8 +55,8 @@ function spotifySong(song){
 //     * The song's name
 //     * A preview link of the song from Spotify
 //     * The album that the song is from
-//   * If no song is provided then your program will default to "The Sign" by Ace of Base.
 
+    //If no song is provided then your program will default to "The Sign" by Ace of Base.
     if(song === '' || song === undefined){
         song = 'I saw the sign';
     }
@@ -58,11 +65,21 @@ function spotifySong(song){
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-      console.log(colors.yellow('---------- Startof Spotify Track Info -----------'));
-      console.log(colors.blue('Artist:\t\t'+data.tracks.items[0].artists[0].name));
-      console.log(colors.blue('Song name:\t'+data.tracks.items[0].name));
-      console.log(colors.blue('Album URL:\t'+data.tracks.items[0].external_urls.spotify));
-      console.log(colors.yellow('---------- Endof Spotify Track Info -----------'));
+        //Format data into string to append to log.txt file
+        var dataString = '';
+        var songData = [
+            "Artist:\t" + data.tracks.items[0].artists[0].name,
+            "Song:\t" + data.tracks.items[0].name,
+            'Album URL:\t'+data.tracks.items[0].external_urls.spotify,
+          ].join("\n\n");
+          logToFile(songData);
+
+        //Format for console with colors 
+        console.log(colors.yellow('---------- Startof Spotify Track Info -----------'));
+        console.log(colors.blue('Artist:\t\t'+data.tracks.items[0].artists[0].name));
+        console.log(colors.blue('Song name:\t'+data.tracks.items[0].name));
+        console.log(colors.blue('Album URL:\t'+data.tracks.items[0].external_urls.spotify));
+        console.log(colors.yellow('---------- Endof Spotify Track Info -----------'));
     });
 }
 
@@ -92,7 +109,7 @@ function omdb(movie){
             "Year: " + response.data.Year,
             'Ratings: IMDB: '+response.data.Ratings[0].Value+'\tRotten Tomatoes: '+response.data.Ratings[1].Value,
             'Country (produced in):\t'+response.data.Country,
-            'Language:'+response.data.Language,
+            'Language: '+response.data.Language,
             'Plot:\t'+response.data.Plot,
             'Actors:\t'+response.data.Actors
           ].join("\n\n");
@@ -154,7 +171,7 @@ function logToFile(string){
      // Append showData and the divider to log.txt, print showData to the console
      fs.appendFile("log.txt", string + divider, function(err) {
         if (err) throw err;
-        console.log('Appended to File!');
+        console.log('*This information has been appended to the log.txt file.');
       });
 }
 

@@ -139,11 +139,11 @@ function commandByArgv(){
             break;
         default :
             console.log(colors.red('Error. You entered an invalid command.'));
-            console.log(colors.blue('\nUse on of the following:'));
-            console.log(colors.blue('\nconcert-this <band name>'));
-            console.log(colors.blue('\nspotify-this-song <song name>'));
-            console.log(colors.blue('\nmovie-this <movie title>'));
-            console.log(colors.blue('\ndo-what-it-says\n'));
+            console.log(colors.yellow('\nUse one of the following:'));
+            console.log(colors.yellow('\nconcert-this <band name>'));
+            console.log(colors.yellow('\nspotify-this-song <song name>'));
+            console.log(colors.yellow('\nmovie-this <movie title>'));
+            console.log(colors.yellow('\ndo-what-it-says\n'));
     }
 };
 

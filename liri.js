@@ -7,6 +7,7 @@ var axios = require('axios');
 var inquirer = require('inquirer');
 var colors = require('colors');
 var fs = require('fs');
+var moment = require('moment');
 
 // initialize global variables
 var Spotify = require('node-spotify-api');
@@ -16,7 +17,18 @@ var argvArr = process.argv;
 function bandsInTown(artist){
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
     .then(function (response) {
-        console.log(JSON.stringify(response.agent, null, 2)); 
+        //console.log(response); 
+        console.log('---------- '+response.data[0].lineup[0]+' ----------'); 
+        console.log('Venue name:\t'+response.data[0].venue.name);
+        console.log('Venue name:\t'+response.data[0].venue.city+', '+response.data[0].venue.country);
+        var concertDate = response.data[0].datetime;
+        var dateFormat = "MM/DD/YYYY";
+        var convertedDate = moment(concertDate, dateFormat);
+        console.log('Concert Date:\t'+concertDate);
+        console.log('Concert Date:\t'+convertedDate);
+        console.log('-----------------------------------');
+        
+
         //console.log('Name of the venue:\t' );
         //console.log('Venue location:\t' );
         //console.log('Date of event:\t' );
@@ -60,13 +72,18 @@ function omdb(movie){
     axios.get(queryURL)
     .then(function(response) {
         
-        console.log(response.data);
+        //console.log(response.data);
         var dataString = '';
         var movieData = [
             "Title: " + response.data.Title,
             "Year: " + response.data.Year,
-            colors.bold('Ratings: ')+colors.green('IMDB: ')+colors.green(response.data.Ratings[0].Value)+colors.green('\tRotten Tomatoes: ')+colors.green(response.data.Ratings[1].Value)
+            'Ratings: IMDB: '+response.data.Ratings[0].Value+'\tRotten Tomatoes: '+response.data.Ratings[1].Value,
+            'Country (produced in):\t'+response.data.Country,
+            'Language:'+response.data.Language,
+            'Plot:\t'+response.data.Plot,
+            'Actors:\t'+response.data.Actors
           ].join("\n\n");
+
         console.log(colors.yellow('---------- Startof OMDB Moive Info -----------'));
         console.log(colors.bold('Title:\t')+colors.underline.green(response.data.Title)+'\t\tYear: '+colors.italic.green(response.data.Year));
         console.log(colors.bold('Ratings: ')+colors.green('IMDB: ')+colors.green(response.data.Ratings[0].Value)+colors.green('\tRotten Tomatoes: ')+colors.green(response.data.Ratings[1].Value));
@@ -74,7 +91,7 @@ function omdb(movie){
         console.log(colors.bold('Language:')+colors.italic.green(response.data.Language));
         console.log(colors.bold('Plot:\t')+colors.italic.green(response.data.Plot));
         console.log(colors.bold('Actors:\t')+colors.italic.green(response.data.Actors));
-        colors.yellow('---------- Endof OMDB Moive Info -----------');
+        console.log(colors.yellow('---------- Endof OMDB Moive Info -----------'));
 
         logToFile(movieData);
     })

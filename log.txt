@@ -5,3 +5,33 @@ Year: 2003
 [1mRatings: [22m[32mIMDB: [39m[32m8.1/10[39m[32m	Rotten Tomatoes: [39m[32m99%[39m
 ------------------------------------------------------------
 
+Title: Bohemian Rhapsody
+
+Year: 2018
+
+Ratings: [32mIMDB: [39m[32m8.1/10[39m[32m	Rotten Tomatoes: [39m[32m61%[39m
+
+Country (produced in):	[3m[32mUK, USA[39m[23m
+
+Language:[3m[32mEnglish[39m[23m
+
+Plot:	[3m[32mThe story of the legendary rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).[39m[23m
+
+Actors:	[3m[32mRami Malek, Lucy Boynton, Gwilym Lee, Ben Hardy[39m[23m
+------------------------------------------------------------
+
+Title: Bohemian Rhapsody
+
+Year: 2018
+
+Ratings: IMDB: 8.1/10	Rotten Tomatoes: 61%
+
+Country (produced in):	UK, USA
+
+Language:English
+
+Plot:	The story of the legendary rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).
+
+Actors:	Rami Malek, Lucy Boynton, Gwilym Lee, Ben Hardy
+------------------------------------------------------------
+

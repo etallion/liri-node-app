@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Liri</title>
+</head>
+<body>
+    
+<div id="displayDiv"></div>
+
+ <script>
+     function bandsInTown(artist){
+
+        $.ajax({
+             url: "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp",
+             method: "GET"
+    }).then(function(response, err) {
+      //console.log(JSON.stringify(response));
+      console.log(response[0]);
+      //console.log(response.Runtime);
+      console.log(err);
+    });
+    
+
+};
+displayDiv.innerHTML = "Question 6: Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum. <br> Answer: ";
+ 
+bandsInTown('Lumineers');
+
+
+
+ </script>   
+</body>
+</html>
+
+
+

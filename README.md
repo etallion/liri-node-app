@@ -33,8 +33,24 @@ Instructions:
 
 ![Terminal](screenshot.png)
 
+###Bonus Feature - Inquirer 
+
+I added inquirer to give user list of command options if they didn't input CLI arguments. This inquirer prompt only appears if the user doesn't enter a valid search type.
+
+![Terminal](image-inquirer-list.png)
+
+After the user selects a search type for the given a input prompt follow which asks the user to specific the song, concert or movie they wish to search. If no input is received, a default term provided. In this case, the film Mr. Nobody is presented to the user as the result.
+
+![Terminal](image-inquirer.png)
 
 
 
-<Bonus
-I added inquirer to give user list of command options if they didn't input CLI arguments. >
+### Log.txt 
+
+All search results are added and saved to the log.txt. The built in node package is used for appending the new results to the file.
+
+![Image of Log](image-log-file.png)
+
+
+
+

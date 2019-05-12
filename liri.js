@@ -76,9 +76,9 @@ function spotifySong(song){
 
         //Format for console with colors 
         console.log(colors.yellow('---------- Startof Spotify Track Info -----------'));
-        console.log(colors.blue('Artist:\t\t'+data.tracks.items[0].artists[0].name));
-        console.log(colors.blue('Song name:\t'+data.tracks.items[0].name));
-        console.log(colors.blue('Album URL:\t'+data.tracks.items[0].external_urls.spotify));
+        console.log('Artist:\t\t'+colors.cyan(data.tracks.items[0].artists[0].name));
+        console.log('Song name:\t'+colors.cyan(data.tracks.items[0].name));
+        console.log('Album URL:\t'+colors.cyan(data.tracks.items[0].external_urls.spotify));
         console.log(colors.yellow('---------- Endof Spotify Track Info -----------'));
     });
 }
@@ -93,7 +93,7 @@ function omdb(movie){
     // * Language of the movie.
     // * Plot of the movie.
     // * Actors in the movie.
-    if(movie === '' || movie === undefined){
+    if(!movie){
         movie = 'Mr. Nobody';
     }
     
@@ -172,7 +172,7 @@ function logToFile(string){
      // Append showData and the divider to log.txt, print showData to the console
      fs.appendFile("log.txt", string + divider, function(err) {
         if (err) throw err;
-        console.log('*This information has been appended to the log.txt file.');
+        console.log(colors.gray('*This information has been appended to the log.txt file.'));
       });
 }
 
@@ -191,8 +191,10 @@ function commandByInquirer(){
         }
 
     ]).then(function(response){
+        //Set user responeses to the global search type and term variables
         searchType = response.type;
-        searchTerm = response.term
+        searchTerm = response.term;
+        //Next, call the same function as if they were entered from command line
         commandByArgv();
         
     });

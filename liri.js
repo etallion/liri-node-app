@@ -36,10 +36,12 @@ function bandsInTown(artist){
         console.log('Venue name:\t'+colors.magenta(response.data[0].venue.name));
         console.log('Venue name:\t'+colors.magenta(response.data[0].venue.city+', '+response.data[0].venue.region+', '+response.data[0].venue.country));
         var concertDate = response.data[0].datetime;
+        //var removeTFromDateString = concertDate.split("T").join(" ");
+        var removeTFromDateString = concertDate.replace("T", " ");
         var dateFormat = "MM/DD/YYYY";
-        var convertedDate = moment(concertDate, dateFormat);
-        console.log('Concert Date:\t'+colors.magenta(concertDate));
-        //console.log('Concert Date:\t'+convertedDate);
+        var convertedDate = moment(removeTFromDateString).format(dateFormat);
+        console.log('Concert Date:\t'+colors.magenta(convertedDate));
+       // console.log('Concert Date:\t'+ convertedDate);
         console.log(colors.yellow('---------- Endof Bands In Town Concerts -----------'));
         
 
